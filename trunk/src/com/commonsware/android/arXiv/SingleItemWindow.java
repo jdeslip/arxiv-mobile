@@ -298,26 +298,33 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                         String storagePath=Environment.getExternalStorageDirectory()+"/arXiv";
                         Log.d("arXiv - ","Storage path: "+storagePath);
 
-                        File fare = new File("/mnt/sdcard/arXiv");
+                        File fare = new File(storagePath);
                         boolean success = fare.mkdir();
 
                         Log.d("arXiv - ","Storage path: "+success);
 
                         if (fare.exists()) {
-                            pdfPath = "/mnt/sdcard/arXiv/";
+                            pdfPath = "storeagePath+"/";
                             vStorage = true;
                         } else {
-                            File efare = new File("/emmc/arXiv");
+                            File efare = new File("/mnt/sdcard/arXiv");
                             efare.mkdir();
                             if (efare.exists()) {
-                                pdfPath = "/emmc/arXiv/";
+                                pdfPath = "/mnt/sdcard/arXiv/";
                                 vStorage = true;
                             } else {
-                                efare = new File("/media/arXiv");
+                                File efare = new File("/emmc/arXiv");
                                 efare.mkdir();
                                 if (efare.exists()) {
-                                    pdfPath = "/media/arXiv/";
+                                    pdfPath = "/emmc/arXiv/";
                                     vStorage = true;
+                                } else {
+                                    efare = new File("/media/arXiv");
+                                    efare.mkdir();
+                                    if (efare.exists()) {
+                                        pdfPath = "/media/arXiv/";
+                                        vStorage = true;
+                                    }
                                 }
                             }
                         }
