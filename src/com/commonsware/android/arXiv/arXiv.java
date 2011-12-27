@@ -1,5 +1,5 @@
 /*
-    arXiv mobile - a Free arXiv app for android
+y    arXiv mobile - a Free arXiv app for android
     http://code.google.com/p/arxiv-mobile/
 
     Copyright (C) 2010 Jack Deslippe
@@ -106,6 +106,7 @@ public class arXiv extends Activity implements AdapterView.OnItemClickListener {
     private Object[] mAddViewArgs = new Object[2];
     private String[] unreadList;
     private String[] favoritesList;
+    private Boolean vFromWidget = false;
 
     String[] items = { "Astrophysics", "Condensed Matter", "Computer Science",
             "General Relativity", "HEP Experiment", "HEP Lattice",
@@ -621,7 +622,7 @@ public class arXiv extends Activity implements AdapterView.OnItemClickListener {
 
         favoritesList = new String[lfavorites.size()];
         unreadList = new String[lfavorites.size()];
- 
+
         lfavorites.toArray(favoritesList);
         lunread.toArray(unreadList);
 
@@ -635,6 +636,7 @@ public class arXiv extends Activity implements AdapterView.OnItemClickListener {
             String mytype = myInIntent.getStringExtra("keywidget");
 
             if (mytype != null) {
+                vFromWidget = true;
                 tabs.setCurrentTabByTag("tag2");
             }
         } catch (Exception ef) {
@@ -798,13 +800,15 @@ public class arXiv extends Activity implements AdapterView.OnItemClickListener {
         droidDB.close();
         Log.d("Arx","Closed Database 5");
 
-        //Should check for new articles?
-        Thread t10 = new Thread() {
-            public void run() {
-                updateWidget();
-            }
-        };
-        t10.start();
+        if (!vFromWidget) {
+            //Should check for new articles?
+            Thread t10 = new Thread() {
+                public void run() {
+                    updateWidget();
+                }
+            };
+            t10.start();
+        }
 
         List<String> lfavorites = new ArrayList<String>();
         List<String> lunread = new ArrayList<String>();
@@ -921,7 +925,7 @@ public class arXiv extends Activity implements AdapterView.OnItemClickListener {
                 mRemoveAllViews.invoke(views, mRemoveAllViewsArgs);
 
                 //views.removeAllViews(R.id.mainlayout);
-                
+
             } catch (Exception ef) {
             }
             for (Feed feed : favorites) {
