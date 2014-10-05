@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="about_text">arXiv mobile is an open-source Android application to browse daily scientific articles submitted to arXiv.org and to search the entire arXiv.org database. If you like it and use it often, please consider buying the supporter version of the application to support the developer\'s efforts.\n\nViewing PDFs requires a PDF viewer (try AdobeReader from the Market)\n\nYou can add categories and custom searches to your favorites list and can share articles by pressing menu on the article screen.\n\narXiv mobile contains a corresponding widget that checks for new articles in your favorite categories/searches once every hour. Note that favorites that were created with the (non-default) RSS source preference on will not be included in the widget.</string>
+    <string name="about_text">arXiv mobile is an open-source application to browse daily scientific articles submitted to arXiv.org and to search the entire arXiv.org database. If you like it and use it often, please consider buying the supporter version of the application to support the developer\'s efforts.\n\nViewing PDFs requires a PDF viewer (try AdobeReader from the Market)\n\nYou can add categories and custom searches to your favorites list and can share articles by pressing menu on the article screen.\n\narXiv mobile contains a corresponding widget that checks for new articles in your favorite categories/searches once every hour. Note that favorites that were created with the (non-default) RSS source preference on will not be included in the widget.</string>
     <string name="app_name">arXiv mobile</string>
-    <string name="android_2_x_required">Android 2.x required to download PDF in app</string>
+    <string name="android_2_x_required">Downloading PDFs is not supported on your device</string>
     <string name="add_favorites">Add to Favorites</string>
     <string name="added_to_favorites">Added custom search to your favorites</string>
     <string name="added_to_favorites_rss">Added custom search to your favorites.\n\nYour source preferences is RSS: so, this favorite will not show up in the widget.</string>

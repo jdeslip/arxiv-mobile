@@ -304,7 +304,7 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                         Log.d("arXiv - ","Storage path: "+success);
 
                         if (fare.exists()) {
-                            pdfPath = "storeagePath+"/";
+                            pdfPath = storagePath+"/";
                             vStorage = true;
                         } else {
                             File efare = new File("/mnt/sdcard/arXiv");
@@ -313,7 +313,7 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                                 pdfPath = "/mnt/sdcard/arXiv/";
                                 vStorage = true;
                             } else {
-                                File efare = new File("/emmc/arXiv");
+                                efare = new File("/emmc/arXiv");
                                 efare.mkdir();
                                 if (efare.exists()) {
                                     pdfPath = "/emmc/arXiv/";
@@ -349,7 +349,7 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                             HttpURLConnection c = (HttpURLConnection) u
                                     .openConnection();
                             c.setRequestMethod("GET");
-                            c.setDoOutput(true);
+                            //c.setDoOutput(true);
                             c.connect();
 
                             final long ifs = c.getContentLength();
@@ -510,7 +510,7 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                     HttpURLConnection c = (HttpURLConnection) u
                             .openConnection();
                     c.setRequestMethod("GET");
-                    c.setDoOutput(true);
+                    //c.setDoOutput(true);
                     c.connect();
 
                     final long ifs = c.getContentLength();
