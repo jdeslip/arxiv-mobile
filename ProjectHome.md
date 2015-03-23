@@ -1,0 +1,1 @@
+This is the first and most complete Android arXiv client. It lets you browse, favorite, read and print arXiv preprints.
