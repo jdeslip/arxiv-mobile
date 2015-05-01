@@ -136,7 +136,7 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
         case SHARE_ID:
             Intent i = new Intent(android.content.Intent.ACTION_SEND);
             i.setType("text/plain");
-            i.putExtra(Intent.EXTRA_SUBJECT, "arXiv Article");
+            i.putExtra(Intent.EXTRA_SUBJECT, title + " (arXiv article)");
             i.putExtra(Intent.EXTRA_TEXT, title + " " + link);
             startActivity(Intent.createChooser(i, getString(R.string.share)));
             return (true);
