@@ -79,7 +79,7 @@ import android.content.SharedPreferences;
 
 public class arXiv extends Activity implements AdapterView.OnItemClickListener {
 
-    public static final String ARXIV_PATTERN = "^https?://arxiv.org/(abs|pdf)/(.*)(v[0-9]+)?$";
+    public static final String ARXIV_PATTERN = "^https?://arxiv.org/(abs|pdf)/([0-9]+\\.?[0-9]+).*";
     public Context thisActivity;
 
     //UI-Views
