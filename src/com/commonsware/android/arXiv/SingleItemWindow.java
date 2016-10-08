@@ -216,7 +216,7 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
         creator = myIntent.getStringExtra("keycreator");
         description = myIntent.getStringExtra("keydescription");
         link = myIntent.getStringExtra("keylink");
-
+        link = link.replace("http://", "https://");
         progBar = (ProgressBar) findViewById(R.id.pbar); // Progressbar for
                                                          // download
 
