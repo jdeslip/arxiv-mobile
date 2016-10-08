@@ -352,6 +352,15 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                             //c.setDoOutput(true);
                             c.connect();
 
+                            if (c.getResponseCode() == 301) {
+                                // TODO proper handling of HTTP responses and errors
+                                u = new URL(c.getHeaderField("Location"));
+                                c.disconnect();
+                                c = (HttpURLConnection) u.openConnection();
+                                c.setRequestMethod("GET");
+                                assert c.getResponseCode() == 200;
+                            }
+
                             final long ifs = c.getContentLength();
                             InputStream in = c.getInputStream();
 
