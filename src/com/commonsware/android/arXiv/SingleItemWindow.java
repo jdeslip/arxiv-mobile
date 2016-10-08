@@ -378,7 +378,7 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                             File futureFile = new File(filepath, filename);
                             if (futureFile.exists()) {
                                 final long itmp = futureFile.length();
-                                if (itmp == ifs && itmp != 0) {
+                                if (itmp == ifs && itmp >301) {
                                     vdownload = false;
                                 }
                             }
