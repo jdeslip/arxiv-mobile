@@ -344,6 +344,7 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                             });
 
                             String pdfaddress = link.replace("abs", "pdf");
+                            pdfaddress = NetworkUtils.getRedirectUrl(pdfaddress);
 
                             URL u = new URL(pdfaddress);
                             HttpURLConnection c = (HttpURLConnection) u
@@ -506,6 +507,7 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                 try {
                     String pdfaddress = link.replace("abs", "pdf");
 
+                    pdfaddress = NetworkUtils.getRedirectUrl(pdfaddress);
                     URL u = new URL(pdfaddress);
                     HttpURLConnection c = (HttpURLConnection) u
                             .openConnection();
