@@ -343,7 +343,13 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                                 }
                             });
 
-                            String pdfaddress = link.replace("abs", "pdf");
+                            Log.d("arXiv - ","PDF url: "+link); 
+
+                            String pdfaddress = link.replace("abs", "pdf").replace("http","https");
+
+                            Log.d("arXiv - ","PDF url 2: "+pdfaddress); 
+
+                            pdfaddress = pdfaddress+".pdf";
 
                             URL u = new URL(pdfaddress);
                             HttpURLConnection c = (HttpURLConnection) u
@@ -504,7 +510,9 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
             public void run() {
 
                 try {
-                    String pdfaddress = link.replace("abs", "pdf");
+                    String pdfaddress = link.replace("abs", "pdf").replace("http","https");
+
+                    pdfaddress = pdfaddress + ".pdf";
 
                     URL u = new URL(pdfaddress);
                     HttpURLConnection c = (HttpURLConnection) u

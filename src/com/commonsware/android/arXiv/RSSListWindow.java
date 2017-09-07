@@ -51,6 +51,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.widget.LinearLayout;
 import android.view.LayoutInflater;
+import android.util.Log;
 
 public class RSSListWindow extends ListActivity {
 
@@ -339,6 +340,8 @@ public class RSSListWindow extends ListActivity {
         name = myIntent.getStringExtra("keyname");
         query = myIntent.getStringExtra("keyurl");
         urlAddress = "http://export.arxiv.org/rss/" + query;
+
+        Log.d("Arxiv - ","RSS "+urlAddress);
 
         header = (TextView) findViewById(R.id.theaderlis);
 
