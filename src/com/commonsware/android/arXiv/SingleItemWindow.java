@@ -216,7 +216,7 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
         creator = myIntent.getStringExtra("keycreator");
         description = myIntent.getStringExtra("keydescription");
         link = myIntent.getStringExtra("keylink");
-
+        link = link.replace("http://", "https://");
         progBar = (ProgressBar) findViewById(R.id.pbar); // Progressbar for
                                                          // download
 
@@ -358,6 +358,15 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                             //c.setDoOutput(true);
                             c.connect();
 
+                            if (c.getResponseCode() == 301) {
+                                // TODO proper handling of HTTP responses and errors
+                                u = new URL(c.getHeaderField("Location"));
+                                c.disconnect();
+                                c = (HttpURLConnection) u.openConnection();
+                                c.setRequestMethod("GET");
+                                assert c.getResponseCode() == 200;
+                            }
+
                             final long ifs = c.getContentLength();
                             InputStream in = c.getInputStream();
 
@@ -375,7 +384,7 @@ public class SingleItemWindow extends Activity implements View.OnClickListener {
                             File futureFile = new File(filepath, filename);
                             if (futureFile.exists()) {
                                 final long itmp = futureFile.length();
-                                if (itmp == ifs && itmp != 0) {
+                                if (itmp == ifs && itmp >301) {
                                     vdownload = false;
                                 }
                             }

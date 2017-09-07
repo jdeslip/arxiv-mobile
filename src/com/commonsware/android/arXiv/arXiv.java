@@ -27,6 +27,8 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -71,13 +73,13 @@ import android.app.PendingIntent;
 import android.widget.RemoteViews;
 
 import android.os.SystemClock;
-import android.net.Uri;
 
 import android.preference.PreferenceManager;
 import android.content.SharedPreferences;
 
 public class arXiv extends Activity implements AdapterView.OnItemClickListener {
 
+    public static final String ARXIV_PATTERN = "^https?://arxiv.org/(abs|pdf)/([0-9]+\\.?[0-9]+).*";
     public Context thisActivity;
 
     //UI-Views
@@ -633,11 +635,14 @@ public class arXiv extends Activity implements AdapterView.OnItemClickListener {
 
         try {
             Intent myInIntent = getIntent();
-            String mytype = myInIntent.getStringExtra("keywidget");
-
-            if (mytype != null) {
-                vFromWidget = true;
-                tabs.setCurrentTabByTag("tag2");
+            if (myInIntent.getAction() == "android.intent.action.VIEW") {
+                searchFromUrlId(myInIntent.getData());
+            } else {
+                String mytype = myInIntent.getStringExtra("keywidget");
+                if (mytype != null) {
+                    vFromWidget = true;
+                    tabs.setCurrentTabByTag("tag2");
+                }
             }
         } catch (Exception ef) {
             Log.e("arxiv","Failed to change tab "+ef);
@@ -646,6 +651,32 @@ public class arXiv extends Activity implements AdapterView.OnItemClickListener {
         SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this);
         mySourcePref=Integer.parseInt(prefs.getString("sourcelist", "0"));
 
+    }
+
+    private String extractArXivId(Uri data) {
+        Pattern pattern = Pattern.compile(ARXIV_PATTERN);
+        Matcher matcher = pattern.matcher(data.toString());
+        if (matcher.find()) {
+            return matcher.group(2);
+        } else {
+            return "";
+        }
+    }
+
+    private void searchFromUrlId(Uri data) {
+        Log.i("arXiv", data.toString());
+        String arXivId = extractArXivId(data);
+
+        if (arXivId.length() > 0) {
+            Log.i("arXiv", arXivId);
+            Intent myIntent = new Intent(this, SearchListWindow.class);
+            myIntent.putExtra("keyquery", "id_list=" + arXivId);
+            myIntent.putExtra("keyname", arXivId);
+            myIntent.putExtra("keyurl", "");
+            startActivity(myIntent);
+        } else {
+            Log.e("arXiv", "No arXivId found in intent URL");
+        }
     }
 
     public void onCreateContextMenu(ContextMenu menu, View view,
