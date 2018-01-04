@@ -1,7 +1,14 @@
-# arxiv-mobile
-arXiv mobile - An Android App for arXiv
+arXiv mobile
+============
 
-Privacy Policy:
+arXiv mobile - An Android App for arXiv.org
+
+<a href="https://f-droid.org/packages/com.commonsware.android.arXiv/" target="_blank">
+<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="90"/></a>
+<a href="https://play.google.com/store/apps/details?id=com.commonsware.android.arXiv" target="_blank">
+<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="90"/></a>
+
+# Privacy Policy
 
 This app collects no personal identifiable information from users.
 
