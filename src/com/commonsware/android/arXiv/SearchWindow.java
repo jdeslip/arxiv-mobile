@@ -149,6 +149,38 @@ public class SearchWindow extends Activity implements
             finalDate = "" + mYear + "0" + (mMonth + 1) + mDay + "2399";
         }
     }
+    
+    private static Bundle dataLossSave;
+
+    private boolean isSubmit;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (dataLossSave != null ) {
+            dataLossSave.clear();
+            dataLossSave = null ;
+        }
+        dataLossSave = new Bundle();
+        if(isSubmit){
+            dataLossSave.clear();
+            dataLossSave = null ;
+        }else {
+            dataLossSave.putString("editField1", field1.getText().toString());
+            dataLossSave.putString("editField2", field2.getText().toString());
+            dataLossSave.putString("editField3", field3.getText().toString());
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (dataLossSave != null ) {
+            field1.setText(dataLossSave.getString("editField1", ""));
+            field2.setText(dataLossSave.getString("editField2", ""));
+            field3.setText(dataLossSave.getString("editField3", ""));
+        }
+    }
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -197,6 +229,7 @@ public class SearchWindow extends Activity implements
     }
 
     public void pressedSearchButton(View button) {
+        isSubmit = true;
         String query = "";
         String idlist = "";
         String tittext = "Search: " + textEntryValue1;
